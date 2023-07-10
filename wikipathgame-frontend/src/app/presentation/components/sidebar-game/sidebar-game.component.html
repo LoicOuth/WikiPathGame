@@ -1,0 +1,7 @@
+<div class="h-full bg-gray-800">
+  <div *ngFor="let player of gameService.currentGame!.players"
+    class="flex items-center justify-between w-full px-3 py-5 font-bold text-teal-500 border-b-4 border-white/30">
+    <p>{{player.pseudo}}</p>
+    <p>{{player.points}} pts</p>
+  </div>
+</div>

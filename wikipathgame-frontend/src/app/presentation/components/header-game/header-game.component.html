@@ -1,0 +1,17 @@
+<div class="flex items-center justify-between w-full p-5 bg-gray-800">
+  <div class="flex items-center text-xl font-bold text-white" *ngIf="currentPart">
+    <div class="flex items-center">
+      <img *ngIf="currentPart.startPage.pic != null" [src]="currentPart.startPage.pic" class="w-10 h-10 mr-2" />
+      <span>{{currentPart.startPage.title}}</span>
+    </div>
+    <img src="../../../../assets/images/arrow-right.svg" class="w-10 h-10 ml-5 mr-5">
+    <div class="flex items-center">
+      <img *ngIf="currentPart.endPage.pic != null" [src]="currentPart.endPage.pic" class="w-10 h-10 mr-2" />
+      <a [routerLink]="path">{{currentPart.endPage.title}}</a>
+    </div>
+  </div>
+  <div class="flex items-center">
+    <img *ngIf="showLoader" src="../../../../assets/images/loading_white.svg" class="w-6 h-6 ml-5 mr-5 animate-spin" />
+    <button class="btn-xs btn-error" (click)="leaveGame()">Quitter</button>
+  </div>
+</div>

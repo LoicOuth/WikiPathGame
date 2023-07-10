@@ -1,0 +1,13 @@
+<div class="flex justify-center w-full h-full mt-5">
+  <div class="flex flex-col w-2/3 h-full">
+    <label class="mb-2 text-2xl text-white">Choisi un surnom </label>
+    <input placeholder="pseudo12345678" class="primary-input" [(ngModel)]="pseudo" />
+
+    <label class="mt-5 mb-2 text-2xl text-white">Entre un code </label>
+    <input placeholder="code1234" class="primary-input" [class]="errorCode ? 'border-rose-500' : ''"
+      [(ngModel)]="gameCode" />
+    <small *ngIf="errorCode" class="text-rose-500">Tu as oublié le code !</small>
+
+    <button class="mt-8 btn-primary" (click)="joinRoom()">Rejoindre</button>
+  </div>
+</div>

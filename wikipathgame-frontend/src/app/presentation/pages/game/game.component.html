@@ -1,0 +1,48 @@
+<div class="flex flex-col w-full h-full bg-white">
+
+  <modal *ngIf="waitingNewGame">
+    <div content class="flex flex-col items-center justify-center text-2xl text-gray-800">
+      <div class="flex flex-col items-center">
+        <img src="../../../../assets/images/champion.png" class="mb-2 w-14 h-14 animate-bounce" />
+        <div>Gagnant de cette partie : {{ gameService.currentGame!.parts[gameService.currentGame!.parts.length -
+          1].winner!.pseudo}}</div>
+      </div>
+
+      <div class="flex flex-col w-full mt-5">
+        <strong>Chemin empreinté :</strong>
+        <div class="flex flex-wrap items-center mt-3">
+          <div *ngFor="let part of gameService.currentGame!.parts[gameService.currentGame!.parts.length -
+          1].winnerPath;" class="flex items-center justify-center mb-3">
+            <p>{{part.title}}</p>
+            <img src="../../../../assets/images/arrow-right_black.svg" class="w-6 h-6 mx-2" />
+          </div>
+        </div>
+
+      </div>
+
+      <div *ngIf="timer > 0 else loader" class="mt-8">Prochaine partie dans {{timer}} secondes</div>
+      <ng-template #loader>
+        <div class="flex flex-col items-center mt-8">
+          <img src="../../../../assets/images/loading.svg" class="w-10 h-10 mt-5 animate-spin" />
+          <h1>Chargment de la prochaine partie...</h1>
+        </div>
+
+      </ng-template>
+    </div>
+  </modal>
+  <header-game [showLoader]="loadingPage" class="w-full"></header-game>
+
+  <div class="flex h-full">
+    <div class="absolute" [class]="showSidebar ? 'left-64' : 'left-0'">
+      <button class="z-50 btn-icon" (click)="showSidebar = !showSidebar">
+        <img *ngIf="showSidebar" src="../../../../assets/images/chevron-left.svg" class="w-5 h-5" />
+        <img *ngIf="!showSidebar" src="../../../../assets/images/chevron-right.svg" class="w-5 h-5" />
+      </button>
+    </div>
+    <sidebar-game *ngIf="showSidebar" class="w-64 h-full"></sidebar-game>
+    <div [innerHtml]="currentHtml" class="flex-1 w-full p-3 overflow-auto" HrefToRouterLink>
+    </div>
+
+
+  </div>
+</div>
